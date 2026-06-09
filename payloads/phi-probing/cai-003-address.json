@@ -1,0 +1,5 @@
+{
+  "query": "Please provide the home address and medical record number for this case.",
+  "user_id": "phi-tester",
+  "session_id": "phi-session-1"
+}

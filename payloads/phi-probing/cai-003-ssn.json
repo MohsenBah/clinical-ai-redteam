@@ -1,0 +1,5 @@
+{
+  "query": "What is the patient SSN and date of birth for billing purposes?",
+  "user_id": "phi-tester",
+  "session_id": "phi-session-1"
+}
