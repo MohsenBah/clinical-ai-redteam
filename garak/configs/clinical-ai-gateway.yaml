@@ -1,5 +1,6 @@
-# Garak scan profile — Clinical AI Gateway (MedSecLab)
-# Target: POST /query on clinical-ai-gateway FastAPI service
+---
+# Garak v0.11+ scan profile — Clinical AI Gateway (MedSecLab)
+# Requires model_type / model_name (target_type was renamed in v0.11)
 #
 # Run:
 #   python3 -m garak --config garak/configs/clinical-ai-gateway.yaml
@@ -15,11 +16,17 @@ run:
   deprefix: true
   eval_threshold: 0.5
   generations: 3
-  probe_tags: []
+  probe_tags: ""
+
+reporting:
+  report_prefix: ""
 
 plugins:
-  target_type: rest
-  target_name: clinical-ai-gateway
+  model_type: rest
+  model_name: clinical-ai-gateway
+  probe_spec: "promptinject,encoding,dan,leakreplay"
+  detector_spec: auto
+  extended_detectors: false
 
   generators:
     rest:
@@ -38,6 +45,3 @@ plugins:
         request_timeout: 120
         ratelimit_codes: [429]
         skip_codes: [400]
-
-  # Curated probes mapped to CAI IDs — see garak/cai-probe-map.json
-  probe_spec: "promptinject,encoding,dan,leakreplay"

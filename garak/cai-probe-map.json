@@ -2,10 +2,12 @@
   "version": 1,
   "description": "Maps Garak probe modules to MedSecLab CAI attack IDs and manual campaign expectations",
   "gateway_notes": {
+    "garak_version": "0.11+ uses plugins.model_type and plugins.model_name (not target_type)",
     "blocked_http": 400,
     "blocked_behavior": "Gateway input validation blocks before LLM; Garak may skip 400 responses (see skip_codes in config)",
     "allowed_http": 200,
-    "compare_to": "campaign/campaign-manifest.json and docs/red-team-report-v1.md"
+    "compare_to": "campaign/campaign-manifest.json and docs/red-team-report-v1.md",
+    "troubleshooting": "If 'nothing to do', run --list_config and confirm model_type=rest. If 'No detectors', check garak.log for detector import errors."
   },
   "mappings": [
     {

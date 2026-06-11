@@ -20,10 +20,21 @@ curl -s http://localhost:8000/health | jq
 ./scripts/run_garak.sh
 ```
 
-Or directly:
+Or directly (Garak **v0.11+** uses `model_type` / `model_name`):
 
 ```bash
-python3 -m garak --config garak/configs/clinical-ai-gateway.yaml
+python3 -m garak \
+  --config garak/configs/clinical-ai-gateway.yaml \
+  --model_type rest \
+  --model_name clinical-ai-gateway \
+  --generator_option_file garak/configs/rest-generator.json \
+  --probes promptinject,encoding,dan,leakreplay
+```
+
+Verify config loaded:
+
+```bash
+python3 -m garak --config garak/configs/clinical-ai-gateway.yaml --list_config | grep model_type
 ```
 
 ## Configuration
@@ -68,6 +79,14 @@ python3 scripts/compare_garak_campaign.py --report garak/reports/<latest>.report
 ```
 
 Checks Garak probe results against `cai-probe-map.json` and `campaign/campaign-manifest.json` known gaps.
+
+## Troubleshooting
+
+| Symptom | Fix |
+|---------|-----|
+| `nothing to do 🤷` | Garak v0.11 needs `model_type` / `model_name` in yaml (not `target_type`) |
+| `No detectors, nothing to do` | Detector dependency failed — check `garak.log`, try `pip install -U garak transformers` |
+| No `.report.jsonl` | Scan did not start — run `--list_config` to verify `model_type: rest` |
 
 ## Reports
 
