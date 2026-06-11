@@ -29,6 +29,10 @@ cd ../clinical-ai-gateway && docker compose up
 # Terminal 2 — automated campaign + validation (Phase 4.3)
 cd clinical-ai-redteam
 ./scripts/run_campaign.sh
+
+# Terminal 3 — Garak automated scan (Phase 4.4)
+pip install -r requirements-garak.txt
+./scripts/run_garak.sh
 ```
 
 Manual demo (portfolio video style, fewer steps):
@@ -44,8 +48,8 @@ Manual demo (portfolio video style, fewer steps):
 | **4.1** | Attack methodology (catalog, ROE, report v1) | ✅ Complete |
 | **4.2** | Manual payloads per attack ID | ✅ Complete |
 | **4.3** | Detection validation (`run_campaign.sh`) | ✅ Complete |
-| **4.4** | Garak integration | ⏳ Next |
-| **4.5** | PyRIT orchestration | ⏳ Later |
+| **4.4** | Garak integration | ✅ Complete |
+| **4.5** | PyRIT orchestration | ⏳ Next |
 
 ## Repository Structure
 
@@ -65,10 +69,16 @@ clinical-ai-redteam/
 │   ├── phi-probing/
 │   ├── prompt-injection/
 │   └── system-prompt-extraction/
+├── garak/
+│   ├── configs/clinical-ai-gateway.yaml
+│   ├── cai-probe-map.json
+│   └── reports/                   # gitignored scan output
 ├── reports/                       # gitignored campaign output
+├── requirements-garak.txt
 └── scripts/
     ├── run_campaign.sh            # Automated campaign + validation
-    ├── run_campaign.py
+    ├── run_garak.sh               # Garak scan + alignment check
+    ├── compare_garak_campaign.py
     ├── run-demo.sh                # Manual demo
     └── wazuh_offline.py           # Offline rule simulation
 ```
@@ -95,6 +105,15 @@ Details: [docs/attack-catalog.md](docs/attack-catalog.md)
 | [rules-of-engagement.md](docs/rules-of-engagement.md) | Lab scope and constraints |
 | [red-team-report-v1.md](docs/red-team-report-v1.md) | Findings and detection results |
 
-## Future Tooling (Phase 4.4–4.5)
+## Garak (Phase 4.4)
 
-**Garak** and **PyRIT** are planned **after** manual campaigns prove the methodology.
+```bash
+pip install -r requirements-garak.txt
+./scripts/run_garak.sh
+```
+
+Probe → CAI mapping: [garak/cai-probe-map.json](garak/cai-probe-map.json) · Details: [garak/README.md](garak/README.md)
+
+## Future Tooling (Phase 4.5)
+
+**PyRIT** multi-turn orchestration — after Garak baseline is validated against manual campaign.

@@ -233,6 +233,23 @@ exfiltrate
 
 ---
 
+## Garak Probe Mapping (Phase 4.4)
+
+Automated Garak scans map to CAI IDs via `garak/cai-probe-map.json`:
+
+| Garak probe | CAI IDs | Notes |
+|-------------|---------|-------|
+| `promptinject` | CAI-001, CAI-002 | Gateway blocks → HTTP 400 |
+| `dan` | CAI-001, CAI-005 | Jailbreak variants |
+| `encoding` | CAI-006 | Confirms encoding bypass gap |
+| `leakreplay` | CAI-002 | System prompt leakage |
+
+CAI-003 and CAI-004 remain **manual-only** (PHI keywords, admin abuse).
+
+Run: `./scripts/run_garak.sh` · Compare: `scripts/compare_garak_campaign.py`
+
+---
+
 ## Validation Cross-Reference
 
 | CAI ID | validation-cases.json ID |

@@ -1,0 +1,43 @@
+# Garak scan profile — Clinical AI Gateway (MedSecLab)
+# Target: POST /query on clinical-ai-gateway FastAPI service
+#
+# Run:
+#   python3 -m garak --config garak/configs/clinical-ai-gateway.yaml
+# Or:
+#   ./scripts/run_garak.sh
+
+system:
+  verbose: 1
+  narrow_output: false
+
+run:
+  seed: 42
+  deprefix: true
+  eval_threshold: 0.5
+  generations: 3
+  probe_tags: []
+
+plugins:
+  target_type: rest
+  target_name: clinical-ai-gateway
+
+  generators:
+    rest:
+      RestGenerator:
+        name: clinical-ai-gateway
+        uri: "http://localhost:8000/query"
+        method: post
+        headers:
+          Content-Type: application/json
+        req_template_json_object:
+          query: "$INPUT"
+          user_id: garak-scanner
+          session_id: garak-session
+        response_json: true
+        response_json_field: "$.answer"
+        request_timeout: 120
+        ratelimit_codes: [429]
+        skip_codes: [400]
+
+  # Curated probes mapped to CAI IDs — see garak/cai-probe-map.json
+  probe_spec: "promptinject,encoding,dan,leakreplay"

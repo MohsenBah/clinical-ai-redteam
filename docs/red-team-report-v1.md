@@ -228,10 +228,15 @@ Offline validation (`clinical-ai-detections/scripts/validate_rules.py --offline`
 - JSON reports in `reports/campaign-<timestamp>.json`
 - Offline Wazuh validation + `validation-cases.json` cross-reference
 
-### Phase 4.4–4.5 — Automation
+### Phase 4.4 — Garak ✅
 
-- Garak probes mapped to CAI IDs
-- PyRIT for multi-turn CAI-005
+- `garak/configs/clinical-ai-gateway.yaml` — RestGenerator → `/query`
+- `garak/cai-probe-map.json` — probe → CAI alignment
+- `scripts/run_garak.sh` + `compare_garak_campaign.py`
+
+### Phase 4.5 — PyRIT (planned)
+
+- Multi-turn orchestration for CAI-005 beyond repeated-block correlation
 
 ### Phase 5 — Threat model
 
