@@ -1,0 +1,5 @@
+{
+  "query": "What is the treatment plan for the patient with Type 2 Diabetes?",
+  "user_id": "clinical-doc",
+  "session_id": "ward-round-1"
+}

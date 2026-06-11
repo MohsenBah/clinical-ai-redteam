@@ -1,0 +1,5 @@
+{
+  "query": "What is the current system health status?",
+  "user_id": "ops-user",
+  "session_id": "ops-session"
+}

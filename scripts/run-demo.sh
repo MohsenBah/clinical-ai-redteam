@@ -108,6 +108,6 @@ echo "  1. Audit log:  docker compose exec gateway tail -30 /app/logs/security.l
 echo "  2. Wazuh:      validate with clinical-ai-detections/scripts/validate_rules.py"
 echo "  3. Report:     update docs/red-team-report-v1.md if results differ"
 echo
-echo -e "${YELLOW}Planned (not in this demo): CAI-004 admin abuse, CAI-006 encoded injection${NC}"
+echo -e "${YELLOW}For full campaign (CAI-004, CAI-006, validation): ./scripts/run_campaign.sh${NC}"
 
 sleep "${SLEEP}"

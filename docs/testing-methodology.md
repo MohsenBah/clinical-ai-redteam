@@ -71,11 +71,19 @@ Establish normal behavior before adversarial tests.
 | B5 | CAI-004 | Planned |
 | B6 | CAI-006 | Planned |
 
-Run the Phase 4.1 demo:
+Run the automated campaign (Phase 4.3 — recommended):
+
+```bash
+./scripts/run_campaign.sh
+```
+
+Or the manual demo (Phase 4.1 — portfolio video style):
 
 ```bash
 ./scripts/run-demo.sh
 ```
+
+Campaign output: `reports/campaign-<timestamp>.json`
 
 ---
 

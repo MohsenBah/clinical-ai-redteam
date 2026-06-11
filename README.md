@@ -26,16 +26,14 @@ Part of the MedSecLab portfolio:
 # Terminal 1 — start gateway
 cd ../clinical-ai-gateway && docker compose up
 
-# Terminal 2 — run red team demo
+# Terminal 2 — automated campaign + validation (Phase 4.3)
 cd clinical-ai-redteam
-./scripts/run-demo.sh
+./scripts/run_campaign.sh
 ```
 
-Optional: point at a custom gateway URL or demo path:
+Manual demo (portfolio video style, fewer steps):
 
 ```bash
-export API_BASE_URL=http://localhost:8000
-export GATEWAY_DEMO=../clinical-ai-gateway/demo
 ./scripts/run-demo.sh
 ```
 
@@ -44,9 +42,9 @@ export GATEWAY_DEMO=../clinical-ai-gateway/demo
 | Phase | Focus | Status |
 |-------|-------|--------|
 | **4.1** | Attack methodology (catalog, ROE, report v1) | ✅ Complete |
-| **4.2** | Manual payloads per attack ID | ⏳ Next |
-| **4.3** | Detection validation (`run_campaign.sh`) | ⏳ Pending |
-| **4.4** | Garak integration | ⏳ Later |
+| **4.2** | Manual payloads per attack ID | ✅ Complete |
+| **4.3** | Detection validation (`run_campaign.sh`) | ✅ Complete |
+| **4.4** | Garak integration | ⏳ Next |
 | **4.5** | PyRIT orchestration | ⏳ Later |
 
 ## Repository Structure
@@ -54,29 +52,37 @@ export GATEWAY_DEMO=../clinical-ai-gateway/demo
 ```
 clinical-ai-redteam/
 ├── README.md
+├── campaign/
+│   └── campaign-manifest.json     # Step expectations
 ├── docs/
-│   ├── attack-catalog.md          # CAI-001–006
-│   ├── testing-methodology.md     # Attack → Wazuh pipeline
+│   ├── attack-catalog.md
+│   ├── testing-methodology.md
 │   ├── rules-of-engagement.md
-│   └── red-team-report-v1.md      # Professional deliverable
+│   └── red-team-report-v1.md
 ├── payloads/
-│   ├── prompt-injection/
+│   ├── admin-abuse/
+│   ├── baseline/
 │   ├── phi-probing/
+│   ├── prompt-injection/
 │   └── system-prompt-extraction/
+├── reports/                       # gitignored campaign output
 └── scripts/
-    └── run-demo.sh                # Phase 4.1 demo campaign
+    ├── run_campaign.sh            # Automated campaign + validation
+    ├── run_campaign.py
+    ├── run-demo.sh                # Manual demo
+    └── wazuh_offline.py           # Offline rule simulation
 ```
 
 ## Attack Catalog
 
 | Attack ID | Category | Status |
 |-----------|----------|--------|
-| CAI-001 | Ignore previous instructions | Tested |
-| CAI-002 | System prompt extraction | Tested |
-| CAI-003 | PHI probing | Tested |
-| CAI-004 | Administrative privilege abuse | Planned |
-| CAI-005 | Multi-turn injection | Planned |
-| CAI-006 | Encoded injection | Planned |
+| CAI-001 | Ignore previous instructions | Tested ✅ |
+| CAI-002 | System prompt extraction | Tested ✅ |
+| CAI-003 | PHI probing | Tested ✅ |
+| CAI-004 | Administrative privilege abuse | Tested (gaps documented) |
+| CAI-005 | Multi-turn injection | Tested ✅ |
+| CAI-006 | Encoded injection | Tested (gap confirmed) |
 
 Details: [docs/attack-catalog.md](docs/attack-catalog.md)
 
@@ -91,4 +97,4 @@ Details: [docs/attack-catalog.md](docs/attack-catalog.md)
 
 ## Future Tooling (Phase 4.4–4.5)
 
-**Garak** and **PyRIT** are planned **after** manual campaigns prove the methodology. Do not start here.
+**Garak** and **PyRIT** are planned **after** manual campaigns prove the methodology.
