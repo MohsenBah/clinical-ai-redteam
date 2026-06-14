@@ -4,7 +4,7 @@ Curated clinical AI attack scenarios for the MedSecLab portfolio. Each attack ha
 
 **Principle:** Six documented attacks beat five hundred random payloads.
 
-Related: [testing-methodology.md](testing-methodology.md) · [red-team-report-v1.md](red-team-report-v1.md) · [clinical-ai-detections validation cases](https://github.com/MohsenBah/clinical-ai-detections/blob/main/wazuh/tests/validation-cases.json)
+Related: [testing-methodology.md](testing-methodology.md) · [red-team-report-v1.md](red-team-report-v1.md) · [STRIDE threat model](https://github.com/MohsenBah/MedSecLab/blob/main/docs/threat-model.md) · [clinical-ai-detections validation cases](https://github.com/MohsenBah/clinical-ai-detections/blob/main/wazuh/tests/validation-cases.json)
 
 ---
 
