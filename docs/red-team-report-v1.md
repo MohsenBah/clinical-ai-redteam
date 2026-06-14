@@ -234,9 +234,15 @@ Offline validation (`clinical-ai-detections/scripts/validate_rules.py --offline`
 - `garak/cai-probe-map.json` — probe → CAI alignment
 - `scripts/run_garak.sh` + `compare_garak_campaign.py`
 
-### Phase 4.5 — PyRIT (planned)
+### Phase 4.5 — PyRIT / Multi-Turn ✅
 
-- Multi-turn orchestration for CAI-005 beyond repeated-block correlation
+- `pyrit/scenarios/cai-005-scenarios.json` — 4 multi-turn scenarios
+- `scripts/run_multiturn_campaign.py` — stdlib orchestrator (always works)
+- `scripts/run_pyrit.sh` — optional PyRIT `HTTPTarget` + fallback
+
+### Phase 5 — Threat model (next)
+
+- STRIDE in `MedSecLab/docs/threat-model.md`
 
 ### Phase 5 — Threat model
 

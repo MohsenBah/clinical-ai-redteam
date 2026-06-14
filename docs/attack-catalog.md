@@ -185,9 +185,19 @@ Three identical instruction-override probes from `prober-1` → 100100 on each e
 
 ### Gaps
 
-- Allowed-then-blocked multi-turn jailbreaks
-- Context poisoning across turns
-- PyRIT orchestration (Phase 4.5)
+- True conversational context poisoning (gateway is stateless — no server-side turn memory)
+- PyRIT `RedTeamingOrchestrator` with adversarial LLM (optional; `PromptSendingOrchestrator` scaffold in Phase 4.5)
+
+### Phase 4.5 scenarios (`pyrit/scenarios/cai-005-scenarios.json`)
+
+| Scenario | Turns | Tests |
+|----------|-------|-------|
+| `cai-005-repeated-blocks` | 3 | 100200 correlation (same as manual campaign) |
+| `cai-005-crescendo` | 3 | Benign → escalate → block |
+| `cai-005-stitched-context` | 1 | Stitched query blocked — 100100+100102 (first-match reason) |
+| `cai-005-split-framing` | 2 | Framing turn then injection |
+
+Run: `./scripts/run_pyrit.sh`
 
 ---
 

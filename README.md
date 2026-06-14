@@ -30,9 +30,12 @@ cd ../clinical-ai-gateway && docker compose up
 cd clinical-ai-redteam
 ./scripts/run_campaign.sh
 
-# Terminal 3 — Garak automated scan (Phase 4.4)
+# Terminal 3 — Garak scan (Phase 4.4)
 pip install -r requirements-garak.txt
 ./scripts/run_garak.sh
+
+# Terminal 4 — multi-turn / PyRIT (Phase 4.5)
+./scripts/run_pyrit.sh
 ```
 
 Manual demo (portfolio video style, fewer steps):
@@ -49,7 +52,8 @@ Manual demo (portfolio video style, fewer steps):
 | **4.2** | Manual payloads per attack ID | ✅ Complete |
 | **4.3** | Detection validation (`run_campaign.sh`) | ✅ Complete |
 | **4.4** | Garak integration | ✅ Complete |
-| **4.5** | PyRIT orchestration | ⏳ Next |
+| **4.5** | PyRIT / multi-turn orchestration | ✅ Complete |
+| **5** | STRIDE threat model (MedSecLab) | ⏳ Next |
 
 ## Repository Structure
 
@@ -73,14 +77,20 @@ clinical-ai-redteam/
 │   ├── configs/clinical-ai-gateway.yaml
 │   ├── cai-probe-map.json
 │   └── reports/                   # gitignored scan output
-├── reports/                       # gitignored campaign output
+├── pyrit/
+│   ├── scenarios/cai-005-scenarios.json
+│   └── reports/                   # gitignored
 ├── requirements-garak.txt
+├── requirements-pyrit.txt
 └── scripts/
-    ├── run_campaign.sh            # Automated campaign + validation
-    ├── run_garak.sh               # Garak scan + alignment check
+    ├── run_campaign.sh
+    ├── run_garak.sh
+    ├── run_pyrit.sh               # Multi-turn CAI-005
+    ├── run_multiturn_campaign.py
     ├── compare_garak_campaign.py
-    ├── run-demo.sh                # Manual demo
-    └── wazuh_offline.py           # Offline rule simulation
+    ├── compare_pyrit_campaign.py
+    ├── run-demo.sh
+    └── wazuh_offline.py
 ```
 
 ## Attack Catalog
@@ -114,6 +124,12 @@ pip install -r requirements-garak.txt
 
 Probe → CAI mapping: [garak/cai-probe-map.json](garak/cai-probe-map.json) · Details: [garak/README.md](garak/README.md)
 
-## Future Tooling (Phase 4.5)
+## PyRIT / Multi-Turn (Phase 4.5)
 
-**PyRIT** multi-turn orchestration — after Garak baseline is validated against manual campaign.
+```bash
+./scripts/run_pyrit.sh
+```
+
+CAI-005 scenarios: [pyrit/scenarios/cai-005-scenarios.json](pyrit/scenarios/cai-005-scenarios.json) · Details: [pyrit/README.md](pyrit/README.md)
+
+Works without PyRIT installed (stdlib orchestrator). Optional: `pip install -r requirements-pyrit.txt`
