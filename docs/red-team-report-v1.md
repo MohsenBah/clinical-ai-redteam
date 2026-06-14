@@ -2,7 +2,7 @@
 
 **MedSecLab — Clinical AI Gateway**  
 **Report date:** June 2026  
-**Version:** 1.1 (Phase 4.2–4.3 campaign validation)  
+**Version:** 1.1 (campaign validation)  
 **Classification:** Lab / Portfolio (synthetic data only)
 
 ---
@@ -38,9 +38,9 @@ A manual red team assessment was conducted against the MedSecLab clinical AI gat
 
 - Production deployments
 - Real PHI
-- Garak / PyRIT automation (Phase 4.4–4.5)
-- API authentication hardening (planned gateway work)
-- RAG poisoning detection rules (telemetry ready, rules TBD)
+- Garak / PyRIT automation
+- API authentication hardening (not implemented in lab gateway)
+- RAG poisoning detection (ingestion telemetry only)
 
 ### Test window
 
@@ -97,7 +97,7 @@ Lab environment — repeatable via `./scripts/run-demo.sh`
 
 **Gateway:** HTTP 200 — `decision=allowed` (query reaches LLM)
 
-**Risk:** Medium — probing may retrieve synthetic PHI from RAG; detection relies on SIEM + future output filtering.
+**Risk:** Medium — probing may retrieve synthetic PHI from RAG; detection relies on SIEM and output filtering placeholder.
 
 ---
 
@@ -209,50 +209,9 @@ Offline validation (`clinical-ai-detections/scripts/validate_rules.py --offline`
 |------|------------|--------|-------|
 | Encoded injection bypass | Medium | High | CAI-006 — no normalization today |
 | Multi-turn jailbreak (allowed turns) | Medium | Medium | CAI-005 partial |
-| Administrative abuse | Low | Medium | CAI-004 untested |
-| RAG poisoning | Low | High | Ingestion telemetry exists; no Wazuh rule yet |
+| Administrative abuse | Low | Medium | CAI-004 partial — no dedicated admin rule |
+| RAG poisoning | Low | High | Ingestion telemetry exists; no Wazuh rule |
 | Output-side PHI leakage | Medium | High | Detection is query-side; output filter placeholder |
-
----
-
-## 9. Future Work
-
-### Phase 4.2 — Manual payloads ✅
-
-- `payloads/admin-abuse/` and `payloads/prompt-injection/cai-006-*` added
-- All CAI IDs have curated payload files
-
-### Phase 4.3 — `run_campaign.sh` ✅
-
-- `campaign/campaign-manifest.json` + `scripts/run_campaign.py`
-- JSON reports in `reports/campaign-<timestamp>.json`
-- Offline Wazuh validation + `validation-cases.json` cross-reference
-
-### Phase 4.4 — Garak ✅
-
-- `garak/configs/clinical-ai-gateway.yaml` — RestGenerator → `/query`
-- `garak/cai-probe-map.json` — probe → CAI alignment
-- `scripts/run_garak.sh` + `compare_garak_campaign.py`
-
-### Phase 4.5 — PyRIT / Multi-Turn ✅
-
-- `pyrit/scenarios/cai-005-scenarios.json` — 4 multi-turn scenarios
-- `scripts/run_multiturn_campaign.py` — stdlib orchestrator (always works)
-- `scripts/run_pyrit.sh` — optional PyRIT `HTTPTarget` + fallback
-
-### Phase 5 — Threat model (next)
-
-- STRIDE in `MedSecLab/docs/threat-model.md`
-
-### Phase 5 — Threat model
-
-- STRIDE analysis in `MedSecLab/docs/threat-model.md`
-
-### Detection enhancements
-
-- RAG poisoning rules on `event_type=ingestion`
-- Encoded payload normalization or expanded patterns
-- Off-hours access rule (100500)
 
 ---
 
@@ -262,11 +221,11 @@ Offline validation (`clinical-ai-detections/scripts/validate_rules.py --offline`
 # Terminal 1 — gateway
 cd clinical-ai-gateway && docker compose up
 
-# Terminal 2 — automated campaign (recommended)
+# Terminal 2 — automated campaign
 cd clinical-ai-redteam
 ./scripts/run_campaign.sh
 
-# Or manual demo (portfolio video style)
+# Or manual demo
 ./scripts/run-demo.sh
 
 # Verify detection rule harness

@@ -2,8 +2,6 @@
 
 Adversarial testing and offensive security assessment for clinical LLM deployments.
 
-**Build the attack methodology first — not Garak/PyRIT.** Curated attack IDs and a professional red team report are more valuable than hundreds of random payloads or a tool collection.
-
 ## Purpose
 
 Systematically test clinical AI security end-to-end:
@@ -18,7 +16,7 @@ Part of the MedSecLab portfolio:
 
 - [`clinical-ai-gateway`](https://github.com/MohsenBah/clinical-ai-gateway) — target system under test
 - [`clinical-ai-detections`](https://github.com/MohsenBah/clinical-ai-detections) — Wazuh rules, Grafana, validation harness
-- [`MedSecLab`](https://github.com/MohsenBah/MedSecLab) — portfolio coordination, threat model (Phase 5)
+- [`MedSecLab`](https://github.com/MohsenBah/MedSecLab) — portfolio coordination, threat model
 
 ## Quick Start
 
@@ -26,19 +24,19 @@ Part of the MedSecLab portfolio:
 # Terminal 1 — start gateway
 cd ../clinical-ai-gateway && docker compose up
 
-# Terminal 2 — automated campaign + validation (Phase 4.3)
+# Terminal 2 — automated campaign + validation
 cd clinical-ai-redteam
 ./scripts/run_campaign.sh
 
-# Terminal 3 — Garak scan (Phase 4.4)
+# Terminal 3 — Garak scan
 pip install -r requirements-garak.txt
 ./scripts/run_garak.sh
 
-# Terminal 4 — multi-turn / PyRIT (Phase 4.5)
+# Terminal 4 — multi-turn / PyRIT
 ./scripts/run_pyrit.sh
 ```
 
-Manual demo (portfolio video style, fewer steps):
+Manual demo (fewer steps):
 
 ```bash
 ./scripts/run-demo.sh
@@ -53,7 +51,7 @@ Manual demo (portfolio video style, fewer steps):
 | **4.3** | Detection validation (`run_campaign.sh`) | ✅ Complete |
 | **4.4** | Garak integration | ✅ Complete |
 | **4.5** | PyRIT / multi-turn orchestration | ✅ Complete |
-| **5** | STRIDE threat model (MedSecLab) | ⏳ Next |
+| **5** | STRIDE threat model (MedSecLab) | ✅ Complete |
 
 ## Repository Structure
 
@@ -115,7 +113,7 @@ Details: [docs/attack-catalog.md](docs/attack-catalog.md)
 | [rules-of-engagement.md](docs/rules-of-engagement.md) | Lab scope and constraints |
 | [red-team-report-v1.md](docs/red-team-report-v1.md) | Findings and detection results |
 
-## Garak (Phase 4.4)
+## Garak
 
 ```bash
 pip install -r requirements-garak.txt
@@ -124,7 +122,7 @@ pip install -r requirements-garak.txt
 
 Probe → CAI mapping: [garak/cai-probe-map.json](garak/cai-probe-map.json) · Details: [garak/README.md](garak/README.md)
 
-## PyRIT / Multi-Turn (Phase 4.5)
+## PyRIT / Multi-Turn
 
 ```bash
 ./scripts/run_pyrit.sh
@@ -132,4 +130,4 @@ Probe → CAI mapping: [garak/cai-probe-map.json](garak/cai-probe-map.json) · D
 
 CAI-005 scenarios: [pyrit/scenarios/cai-005-scenarios.json](pyrit/scenarios/cai-005-scenarios.json) · Details: [pyrit/README.md](pyrit/README.md)
 
-Works without PyRIT installed (stdlib orchestrator). Optional: `pip install -r requirements-pyrit.txt`
+Works without PyRIT installed (stdlib orchestrator). Install PyRIT with `pip install -r requirements-pyrit.txt` when needed.

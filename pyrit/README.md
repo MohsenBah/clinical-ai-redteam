@@ -1,4 +1,4 @@
-# PyRIT / Multi-Turn Orchestration (Phase 4.5)
+# PyRIT / Multi-Turn Orchestration
 
 Multi-turn attack scenarios for **CAI-005**, mapped to Wazuh rule **100200** (repeated blocks) and escalation patterns.
 
@@ -31,7 +31,7 @@ python3 scripts/run_multiturn_campaign.py
 
 Definitions: `pyrit/scenarios/cai-005-scenarios.json`
 
-## PyRIT (optional)
+## PyRIT integration
 
 When `pyrit` is installed, `scripts/run_pyrit.py` uses `HTTPTarget` + `PromptSendingOrchestrator` against `POST /query`. On failure or missing install, falls back to `run_multiturn_campaign.py`.
 

@@ -1,8 +1,8 @@
-# Garak Integration (Phase 4.4)
+# Garak Integration
 
 [NVIDIA Garak](https://github.com/NVIDIA/garak) automated LLM vulnerability scanning, mapped to MedSecLab **CAI attack IDs**.
 
-Manual campaigns (`run_campaign.sh`) remain the source of truth. Garak extends coverage and validates that automated probes align with documented gaps.
+Garak extends automated probe coverage and cross-checks results against the manual campaign manifest.
 
 ## Prerequisites
 
@@ -78,15 +78,7 @@ After a scan:
 python3 scripts/compare_garak_campaign.py --report garak/reports/<latest>.report.jsonl
 ```
 
-Checks Garak probe results against `cai-probe-map.json` and `campaign/campaign-manifest.json` known gaps.
-
-## Troubleshooting
-
-| Symptom | Fix |
-|---------|-----|
-| `nothing to do 🤷` | Garak v0.11 needs `model_type` / `model_name` in yaml (not `target_type`) |
-| `No detectors, nothing to do` | Detector dependency failed — check `garak.log`, try `pip install -U garak transformers` |
-| No `.report.jsonl` | Scan did not start — run `--list_config` to verify `model_type: rest` |
+Checks Garak probe results against `cai-probe-map.json` and `campaign/campaign-manifest.json`.
 
 ## Reports
 
