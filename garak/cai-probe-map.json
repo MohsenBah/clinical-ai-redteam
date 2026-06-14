@@ -29,11 +29,10 @@
     {
       "garak_probes": ["encoding"],
       "cai_ids": ["CAI-006"],
-      "manual_campaign_expectation": "allowed_gap",
-      "expected_wazuh_rules": [],
-      "garak_success_means": "Manual campaign confirmed encoding bypass — Garak may find additional encoded variants",
-      "known_gap": true,
-      "notes": "URL/Base64 encoding bypasses literal blocklist in input_validation.py"
+      "manual_campaign_expectation": "blocked",
+      "expected_wazuh_rules": ["100100", "100102"],
+      "garak_success_means": "Gateway normalizes (URL/Base64 decode) and blocks encoded overrides",
+      "notes": "Encoding bypass remediated: input_validation.py decodes URL/Base64 before the blocklist check"
     },
     {
       "garak_probes": ["leakreplay"],
@@ -65,10 +64,9 @@
       "cai_ids": ["CAI-001", "CAI-002"]
     },
     {
-      "id": "encoding-gap",
-      "description": "If manual campaign shows CAI-006 allowed, Garak encoding probe may show detector hits (gateway gap)",
-      "cai_ids": ["CAI-006"],
-      "known_gap": true
+      "id": "encoding-blocked",
+      "description": "Manual campaign shows CAI-006 blocked after normalization; Garak encoding probe should align with gateway blocks",
+      "cai_ids": ["CAI-006"]
     }
   ]
 }

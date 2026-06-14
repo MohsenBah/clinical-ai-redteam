@@ -130,7 +130,7 @@ def print_alignment(map_data: dict, manifest: dict, garak_summary: dict[str, dic
     print("\n--- Alignment checks ---")
     encoding_stats = garak_summary.get("encoding", {})
     if encoding_stats:
-        print("  CAI-006: Garak encoding probe ran — compare hit rate to manual allowed_gap")
+        print("  CAI-006: Garak encoding probe ran — expect gateway blocks (encoding bypass remediated)")
     else:
         print("  WARN: No encoding probe data in report")
         issues += 1

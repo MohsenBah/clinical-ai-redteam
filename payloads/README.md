@@ -30,7 +30,7 @@ Run the full campaign (all payloads + validation):
 | `admin-abuse/cai-004-config-dump.json` | CAI-004 | Allowed | Gap |
 | `admin-abuse/cai-004-admin-phi.json` | CAI-004 | Allowed | 100300 |
 | `prompt-injection/cai-005-repeated.json` | CAI-005 | Blocked (×3) | 100100, 100200 |
-| `prompt-injection/cai-006-base64.json` | CAI-006 | Allowed | Gap |
-| `prompt-injection/cai-006-url-encoded.json` | CAI-006 | Allowed | Gap |
+| `prompt-injection/cai-006-base64.json` | CAI-006 | Blocked | Remediated (Base64 decode) |
+| `prompt-injection/cai-006-url-encoded.json` | CAI-006 | Blocked | Remediated (URL decode) |
 
 Campaign expectations: [campaign/campaign-manifest.json](../campaign/campaign-manifest.json)

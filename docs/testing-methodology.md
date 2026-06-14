@@ -161,7 +161,7 @@ Correlate `request_id` and timestamp across Loki → Grafana.
 | CAI-003 | Allowed | 100300 only (not 100100) | **Pass** |
 | CAI-005 | Blocked each turn | 100200 on 3rd within 5 min | **Pass** (partial) |
 | CAI-004 | Allowed | Partial (100300 on admin+PHI) | **Partial** |
-| CAI-006 | Allowed | None | **Documented** |
+| CAI-006 | Blocked | 100100, 100102 | **Pass** (remediated) |
 
 **False positive check:** Normal clinical query (`02-normal-query.sh`) must **not** trigger 100100, 100101, 100102, or 100300.
 
@@ -175,6 +175,6 @@ Document results in [red-team-report-v1.md](red-team-report-v1.md):
 2. Per-CAI findings with log excerpts
 3. Detection results table (rule ID, pass/fail)
 4. Mitigations (gateway blocklist, SIEM rules)
-5. Residual risk (CAI-004, CAI-006 documented findings)
+5. Residual risk (CAI-004 open gap; CAI-006 remediated)
 
 ---

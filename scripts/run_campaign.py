@@ -214,7 +214,7 @@ def validate_step(
 
     known_gap = bool(step.get("known_gap"))
     if known_gap and errors:
-        # Documented gaps (CAI-004 abuse, CAI-006 encoding) pass when outcome matches gap intent
+        # Documented gaps (e.g. CAI-004 admin abuse) pass when outcome matches gap intent
         gap_ok = (
             audit.get("decision") == step.get("expect_decision")
             and result.get("http_status") in step.get("expect_http", [200])

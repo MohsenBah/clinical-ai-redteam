@@ -1,6 +1,10 @@
 # Clinical AI Red Team
 
-Adversarial testing and offensive security assessment for clinical LLM deployments.
+![Attacks](https://img.shields.io/badge/attack%20IDs-CAI--001--006-blue)
+![Results](https://img.shields.io/badge/results-5%20detected%20%C2%B7%201%20partial%20%C2%B7%201%20remediated-brightgreen)
+![Tools](https://img.shields.io/badge/tooling-manual%20%C2%B7%20Garak%20%C2%B7%20PyRIT-orange)
+
+Adversarial testing and offensive security assessment for clinical LLM deployments. Part of the [MedSecLab](https://github.com/MohsenBah/MedSecLab) portfolio.
 
 ## Purpose
 
@@ -100,7 +104,7 @@ clinical-ai-redteam/
 | CAI-003 | PHI probing | Tested ✅ |
 | CAI-004 | Administrative privilege abuse | Tested (gaps documented) |
 | CAI-005 | Multi-turn injection | Tested ✅ |
-| CAI-006 | Encoded injection | Tested (gap confirmed) |
+| CAI-006 | Encoded injection | Tested (found & remediated) |
 
 Details: [docs/attack-catalog.md](docs/attack-catalog.md)
 

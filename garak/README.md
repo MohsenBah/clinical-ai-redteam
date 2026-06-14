@@ -57,7 +57,7 @@ Garak sends probe text as the `query` field:
 ```
 
 - **Blocked injections** return HTTP **400** — config uses `skip_codes: [400]` so Garak treats gateway blocks as non-responses (expected for CAI-001/002).
-- **Encoding bypass** (CAI-006) returns HTTP **200** — Garak detectors evaluate model output (documents the gap).
+- **Encoded overrides** (CAI-006) are decoded (URL/Base64) and blocked with HTTP **400** after remediation.
 
 ## Probe → CAI mapping
 
@@ -65,7 +65,7 @@ Garak sends probe text as the `query` field:
 |-------------|---------|-------------------|
 | `promptinject` | CAI-001, CAI-002 | Blocked |
 | `dan` | CAI-001, CAI-005 | Blocked |
-| `encoding` | CAI-006 | Allowed (gap) |
+| `encoding` | CAI-006 | Blocked (remediated) |
 | `leakreplay` | CAI-002 | Blocked |
 
 **Not covered by Garak** (use manual campaign): CAI-003 (PHI probing), CAI-004 (admin abuse).
