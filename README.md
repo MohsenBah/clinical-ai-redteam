@@ -102,9 +102,9 @@ clinical-ai-redteam/
 | CAI-001 | Ignore previous instructions | Tested ✅ |
 | CAI-002 | System prompt extraction | Tested ✅ |
 | CAI-003 | PHI probing | Tested ✅ |
-| CAI-004 | Administrative privilege abuse | Tested (gaps documented) |
+| CAI-004 | Administrative privilege abuse | Tested — found & remediated (100310) |
 | CAI-005 | Multi-turn injection | Tested ✅ |
-| CAI-006 | Encoded injection | Tested (found & remediated) |
+| CAI-006 | Encoded injection | Tested — found & remediated |
 
 Details: [docs/attack-catalog.md](docs/attack-catalog.md)
 

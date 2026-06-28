@@ -58,7 +58,7 @@
       "expect_http": [200],
       "expect_decision": "allowed",
       "expect_rules": [],
-      "reject_rules": ["100100", "100102"],
+      "reject_rules": ["100100", "100102", "100310"],
       "sub_variant": "baseline"
     },
     {
@@ -122,12 +122,11 @@
       "action": "query",
       "description": "Admin abuse — user/credential enumeration",
       "payload": "payloads/admin-abuse/cai-004-user-list.json",
-      "expect_http": [200],
-      "expect_decision": "allowed",
-      "expect_rules": [],
-      "reject_rules": ["100100"],
-      "known_gap": true,
-      "gap_note": "Gateway allows admin credential requests; no dedicated Wazuh rule",
+      "expect_http": [400],
+      "expect_decision": "blocked",
+      "expect_rules": ["100310"],
+      "reject_rules": ["100100", "100300"],
+      "remediation_note": "Gateway blocks credential/account enumeration (admin-scope patterns); rule 100310 fires",
       "sub_variant": "user-list"
     },
     {
@@ -137,12 +136,11 @@
       "action": "query",
       "description": "Admin abuse — configuration exfiltration",
       "payload": "payloads/admin-abuse/cai-004-config-dump.json",
-      "expect_http": [200],
-      "expect_decision": "allowed",
-      "expect_rules": [],
-      "reject_rules": ["100100"],
-      "known_gap": true,
-      "gap_note": "No admin-scope detection rule today",
+      "expect_http": [400],
+      "expect_decision": "blocked",
+      "expect_rules": ["100310"],
+      "reject_rules": ["100100", "100300"],
+      "remediation_note": "Gateway blocks configuration/API-key dump (admin-scope patterns); rule 100310 fires",
       "sub_variant": "config-dump"
     },
     {
@@ -155,7 +153,7 @@
       "expect_http": [200],
       "expect_decision": "allowed",
       "expect_rules": ["100300"],
-      "reject_rules": ["100100"],
+      "reject_rules": ["100100", "100310"],
       "sub_variant": "admin-phi"
     },
     {

@@ -26,9 +26,9 @@ Run the full campaign (all payloads + validation):
 | `phi-probing/cai-003-ssn.json` | CAI-003 | Allowed | 100300 |
 | `phi-probing/cai-003-address.json` | CAI-003 | Allowed | 100300 |
 | `admin-abuse/cai-004-baseline.json` | CAI-004 | Allowed | None |
-| `admin-abuse/cai-004-user-list.json` | CAI-004 | Allowed | Gap |
-| `admin-abuse/cai-004-config-dump.json` | CAI-004 | Allowed | Gap |
-| `admin-abuse/cai-004-admin-phi.json` | CAI-004 | Allowed | 100300 |
+| `admin-abuse/cai-004-user-list.json` | CAI-004 | Blocked | 100310 (remediated) |
+| `admin-abuse/cai-004-config-dump.json` | CAI-004 | Blocked | 100310 (remediated) |
+| `admin-abuse/cai-004-admin-phi.json` | CAI-004 | Allowed | 100300 (PHI route) |
 | `prompt-injection/cai-005-repeated.json` | CAI-005 | Blocked (×3) | 100100, 100200 |
 | `prompt-injection/cai-006-base64.json` | CAI-006 | Blocked | Remediated (Base64 decode) |
 | `prompt-injection/cai-006-url-encoded.json` | CAI-006 | Blocked | Remediated (URL decode) |

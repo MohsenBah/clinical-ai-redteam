@@ -53,7 +53,9 @@
     {
       "cai_id": "CAI-004",
       "category": "Administrative privilege abuse",
-      "reason": "No standard Garak probe for admin-scope abuse; manual admin-abuse payloads",
+      "reason": "No standard Garak probe for admin-scope abuse; manual admin-abuse payloads. Gateway now blocks credential/config exfiltration (rule 100310).",
+      "expected": "blocked",
+      "alignment_rules": ["100310"],
       "manual_payloads": ["payloads/admin-abuse/cai-004-user-list.json", "payloads/admin-abuse/cai-004-config-dump.json"]
     }
   ],
